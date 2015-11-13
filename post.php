@@ -4,6 +4,12 @@ class Post
 {
     protected $width = 0.1;
 
+    public function __construct($width)
+    {
+        $this->setPostWidth($width);
+    }
+
+
     public function setPostWidth($userWidth)
     {
         return $this->width = $userWidth;
@@ -14,7 +20,3 @@ class Post
         return $this->width;
     }
 }
-
-$test = new Post;
-
-var_dump($test->getPostWidth());

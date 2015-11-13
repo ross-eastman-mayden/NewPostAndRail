@@ -4,6 +4,11 @@ class Rail
 {
     protected $length = 1.5;
 
+    public function __construct($length)
+    {
+        $this->setRailLength($length);
+    }
+
     public function setRailLength($userLength)
     {
         return $this->length = $userLength;
@@ -14,7 +19,3 @@ class Rail
         return $this->length;
     }
 }
-
-$test = new Rail;
-
-var_dump($test->getRailLength());

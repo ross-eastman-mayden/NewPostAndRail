@@ -1,26 +1,25 @@
 <?php
 
-include_once 'post.php';
-include_once 'rail.php';
+include 'post.php';
+include 'rail.php';
 
 class Fence
 {
 
-    protected $railLength;
     protected $railNumber;
-    protected $postLength;
     protected $postNumber;
+    protected $fenceLength;
 
-    public function __construct()
+    public function __construct($postNumber, $railNumber, $fenceLength)
     {
+        $this->setNumberOfPosts($postNumber);
+        $this->setNumberOfRails($railNumber);
+        $this->setFenceLength($fenceLength);
     }
 
-    public function setNumberOfRails($userRailNumber)
+    public function setNumberOfRails($railNumber)
     {
-        if ($userRailNumber > $this->userPostNumber) {
-            return $this->railNumber = $this->userPostNumber - 1;
-        }
-        return $this->railNumber = $userRailNumber;
+        return $this->railNumber = $railNumber;
     }
 
     public function getNumberOfRails()
@@ -28,12 +27,9 @@ class Fence
         return $this->railNumber;
     }
 
-    public function setNumberOfPosts($userPostNumber)
+    public function setNumberOfPosts($postNumber)
     {
-        if ($userPostNumber > $this->userRailNumber) {
-            return $this->postNumber = $this->userRailNumber++;
-        }
-        return $this->postNumber = $userPostNumber;
+        return $this->postNumber = $postNumber;
     }
 
     public function getNumberOfPosts()
@@ -41,14 +37,37 @@ class Fence
         return $this->postNumber;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFenceLength()
+    {
+        return $this->fenceLength;
+    }
+
+    /**
+     * @param mixed $fenceLength
+     */
+    public function setFenceLength($fenceLength)
+    {
+        $this->fenceLength = $fenceLength;
+    }
+
+    public function setPostAndRails($userRailNumber)
+    {
+        if ($userRailNumber > $this->userPostNumber) {
+            return $this->railNumber = $this->userPostNumber - 1;
+            return $this->railNumber = $userRailNumber;
+        }
+
+        if ($userPostNumber > $this->userRailNumber) {
+            return $this->postNumber = $this->userRailNumber++;
+            return $this->postNumber = $userPostNumber;
+        }
+
+    }
+
 }
 
-$testRailFuncs = new Fence();
-
-$testRailFuncs->setNumberOfRails(10);
-$testRailFuncs->setNumberOfPosts(0);
-
-var_dump($testRailFuncs->getNumberOfRails());
-var_dump($testRailFuncs->getNumberOfPosts());
 
 
